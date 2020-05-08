@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.arpit.unacadmy.MainActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        tools:context=".MainActivity">
+
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:digits="0123456789"
+            android:hint="Enter Progress"
+            android:inputType="phone"
+            android:maxLength="3"
+            android:onTextChanged="@{(text, start, before, count)->viewModel.onTextChanged(text)}"
+            android:text="@{viewModel.progress}"
+            app:layout_constraintEnd_toStartOf="@id/button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:onClick="@{() -> viewModel.onAnimateClick()}"
+            android:text="Animate"
+            app:layout_constraintStart_toEndOf="@id/edittext"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <me.tankery.lib.circularseekbar.CircularSeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            app:cs_circle_color="@color/grey"
+            app:cs_circle_progress_color="@color/green"
+            app:cs_circle_stroke_width="8dp"
+            app:cs_circle_style="round"
+            app:cs_circle_x_radius="10dp"
+            app:cs_circle_y_radius="10dp"
+            app:cs_pointer_color="@color/orange"
+            app:cs_pointer_halo_border_width="5dp"
+            app:cs_pointer_stroke_width="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edittext" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
